@@ -1,11 +1,4 @@
 /*
- * @lc app=leetcode id=238 lang=cpp
- *
- * [238] Product of Array Except Self
- */
-
-/*
-
 PRODUCT OF ARRAY EXCEPT SELF : 238
 TOPIC - ARRAYS
 LEVEL - MEDUIM

@@ -7,6 +7,7 @@ SOURCE - LEETCODE : STRIVER
 
 #include<vector>
 #include<stdio.h>
+#include<stack>
 using namespace std;
 
 
@@ -24,7 +25,7 @@ using namespace std;
   };
 
 
-
+/*
 class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
@@ -51,6 +52,40 @@ public:
     }
 
     
+};*/
+
+class Solution{
+public:vector<int> preorderTraversal(TreeNode* root) {
+    //okay, what we do is, first we push the first element in the stack.
+    vector<int>result;
+    if(root==NULL){
+        return result;
+    }
+
+    //now we create a stack
+    stack<TreeNode*>stk;
+    stk.push(root);
+
+    while(!stk.empty()){
+        TreeNode* node = stk.top();
+        result.push_back(stk.top()->val);
+        stk.pop();
+        if(node->right){
+            stk.push(node->right);
+        }
+        if(node->left){
+            stk.push(node->left);
+        }    
+    
+    }
+
+    return result;
+
+
+}
 };
+
+
+
 // @lc code=end
 
