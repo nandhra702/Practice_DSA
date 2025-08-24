@@ -1,0 +1,48 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+
+    void dfs(TreeNode* root, vector<string>&result,vector<int>&level){
+        if(!root){
+            return ;
+        }
+         level.push_back(root->val);
+
+        //if root node reached, then we will stop, convert the vector to string, push it to result vector
+        if(!root->left && !root->right){
+            int size =  level.size();
+            string str = "";
+            for(int i=0;i<size;i++){
+                str+=to_string(level[i]);
+                if(i!=size-1){
+                str+="->";}
+            }
+            result.push_back(str);
+        }
+
+       
+
+        dfs(root->left,result,level);
+        dfs(root->right,result,level);
+
+        level.pop_back();
+
+    }
+
+    vector<string> binaryTreePaths(TreeNode* root) {
+        vector<string>result;
+        vector<int>level;
+        dfs(root,result,level);
+        return result;
+    }
+};
