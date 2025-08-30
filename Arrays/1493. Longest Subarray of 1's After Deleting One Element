@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int longestSubarray(vector<int>& nums) {
+        //THIS IS A TWO POINTER QUESTION
+        int left=0;
+        int right=0;
+        int count=0;
+        int len =INT_MIN;
+
+        while(right<nums.size()){
+            if(nums[right]==0){
+                count++;
+            }
+            while(count>1){
+                if(nums[left]==0){
+                    count--;
+                }
+                left++;
+            }
+            //here count is either 1 or 0
+            len = max(len,right-left);
+            right++;
+        }
+
+        return len;
+
+    }
+};
