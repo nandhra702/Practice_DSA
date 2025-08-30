@@ -1,0 +1,63 @@
+//WE COMPARE MAXIMUM LENGTH OF TRUTHS WITH K FALSE
+//WE COMPARE MAXIMUM LENGTH OF FALSE WITH K TRUTH
+class Solution {
+public:
+    int maxConsecutiveAnswers(string answerKey, int k) {
+        //what if I search, what is the longest sequence of Truths with K false
+        //then I do whats the longest sequence of Flase with K truths
+        int right=0;
+        int left = 0;
+        int truth=0;
+        int mtrulen = INT_MIN;
+        int mfslen = INT_MIN;
+        int falsey = 0;
+        while(right<answerKey.size()){
+            if(answerKey[right]=='F'){
+                falsey++;
+            }
+            while(falsey>k){
+                if(answerKey[left]=='F'){
+                    falsey--;
+                    left++;
+                }
+                else{
+                    left++;
+                }
+            }
+
+            //now calculate the length
+            mtrulen = max(mtrulen,right-left+1);
+            right++;
+        }
+        
+        //NOW WE HAVE TO DO IT FOR FALSE WITH K TRUTHS
+        right =0;
+        left = 0;
+
+        while(right<answerKey.size()){
+            if(answerKey[right]=='T'){
+                truth++;
+            }
+            while(truth>k){
+                if(answerKey[left]=='T'){
+                    truth--;
+                    left++;
+                }
+                else{
+                    left++;
+                }
+            }
+
+            //now calculate the length
+            mfslen = max(mfslen,right-left+1);
+            right++;
+        }
+
+
+
+    return max(mtrulen,mfslen);
+
+
+
+    }
+};
